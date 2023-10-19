@@ -18,6 +18,12 @@ int main(){
         displayUdpFrame(udpFrame);
     } 
 
+    while (1){
+        if(drv_close(drvFd) == DRV_SUCCESS){
+            break;
+        }
+    }
+
     return 0;
 }
 
