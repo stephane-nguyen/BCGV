@@ -1,38 +1,4 @@
-#include <stdint.h>
-#include <stddef.h>
-
-typedef enum {TURNED_OFF, TURNED_ON} state_t;
-typedef enum {FALSE, TRUE} enum_bool_t;
-typedef enum {CHASSIS_NONE, WHEEL_PRESSURE, DEFAILLANCE_BRAKE} chassis_problem_t;
-typedef enum {MOTOR_NONE, DEFAULT_PRESSURE, LDR_TEMPERATURE, OIL_OVERHEAT} motor_problem_t;
-typedef enum {BATTERY_NONE, EMPTY_BATTERY, BREAKDOWN} battery_problem_t;
-typedef struct { uint8_t id; state_t lightState;} message_t;
-typedef uint8_t tram_number_t;
-
-typedef struct {
-	enum_bool_t cmdWarning;
-	enum_bool_t cmdPositionLights;
-	enum_bool_t cmdLowBeam;
-	enum_bool_t cmdHighBeam;
-	enum_bool_t cmdRightIndicator;
-	enum_bool_t cmdLeftIndicator;
-	enum_bool_t cmdWipers;
-	enum_bool_t cmdWasher;
-	message_t message;
-	state_t isAcquitted;
-	state_t isActivated;
-	tram_number_t tramNumber;
-	uint8_t kilometrage;
-	uint8_t speed;
-	chassis_problem_t chassisProblem;
-	motor_problem_t motorProblem;
-	uint8_t fuelLevel;
-	uint8_t turnsPerMinute;
-	battery_problem_t batteryProblem;
-} car_data_t;
-
-
-car_data_t carData;
+#include "generated_code.h"
 
 void init_carData() {
 	carData.cmdWarning = 0;

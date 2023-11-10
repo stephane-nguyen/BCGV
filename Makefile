@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Iheaders
 LDFLAGS = -Llibs
-LIBS = -l:drv_api.a 
+LIBS = -l:drv_api.a -l:generated_code.a
 
 SRC_DIR = src
 OBJ_DIR = target/obj
