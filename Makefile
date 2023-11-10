@@ -1,13 +1,33 @@
-all: lib app
+CC = gcc
+CFLAGS = -Wall -Iheaders
+LDFLAGS = -Llibs
+# LIBS = -lYourLibraryName
 
-lib:
-    @echo "Building the static library..."
-    $(MAKE) -C lib -f Makefile_lib
+SRC_DIR = src
+OBJ_DIR = target/obj
+HEADER_DIR = headers
+LIB_DIR = libs
+TARGET_DIR = target
 
-app:
-    @echo "Building the application..."
-    $(MAKE) -f Makefile_app
+# List all the .c files in the src directory
+SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+
+# Create a list of corresponding .o files in the obj directory
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+
+TARGET = $(TARGET_DIR)/app
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ_FILES)
+	@mkdir -p $(TARGET_DIR)
+	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    $(MAKE) -C lib -f Makefile_lib clean
-    $(MAKE) -f Makefile_app clean
+	rm -rf $(OBJ_DIR) $(TARGET_DIR)
+
+.PHONY: all clean

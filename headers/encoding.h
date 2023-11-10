@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void decodeComodoMessage(struct, const uint8_t *message);
+void decodeComodoMessage(struct AppData *appData, const uint8_t *message);
 
 #endif

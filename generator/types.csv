@@ -1,0 +1,8 @@
+Name,Genre,Declaration,Possible Values,Comment
+state_t,enum,"{TURNED_OFF, TURNED_ON}",0x0-0x1,
+enum_bool_t,enum,"{FALSE, TRUE}",0-1,Boolean values
+chassis_problem_t,enum,"{CHASSIS_NONE, WHEEL_PRESSURE, DEFAILLANCE_BRAKE}",0x0-0x2,
+motor_problem_t,enum,"{MOTOR_NONE, DEFAULT_PRESSURE, LDR_TEMPERATURE, OIL_OVERHEAT}",0x1-0x4,
+battery_problem_t,enum,"{BATTERY_NONE, EMPTY_BATTERY, BREAKDOWN}",0x0-0x2,Message values
+message_t,struct,{ uint8_t id; state_t lightState;},{ 1-5 ; FALSE-TRUE},Message values
+tram_number_t,typedef,uint8_t,0-100,

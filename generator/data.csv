@@ -1,0 +1,20 @@
+ID,Name,Type,InitValue,Comment
+1,cmdWarning,enum_bool_t,0,"false = 0, et true = 1"
+2,cmdPositionLights,enum_bool_t,0,
+3,cmdLowBeam,enum_bool_t,0,
+4,cmdHighBeam,enum_bool_t,0,
+5,cmdRightIndicator,enum_bool_t,0,
+6,cmdLeftIndicator,enum_bool_t,0,
+7,cmdWipers,enum_bool_t,0,
+8,cmdWasher,enum_bool_t,0,
+9,message,message_t,{0x01; TRUE;},No message at the beginning 
+10,isAcquitted,state_t,0,
+11,isActivated,state_t,0,
+12,tramNumber,tram_number_t,0,
+13,kilometrage,uint8_t,0,
+13,speed,uint8_t,0,
+14,chassisProblem,chassis_problem_t,CHASSIS_NONE,
+14,motorProblem,motor_problem_t,MOTOR_NONE,
+15,fuelLevel,uint8_t,0,
+15,turnsPerMinute,uint8_t,0,
+16,batteryProblem,battery_problem_t,BATTERY_NONE,
