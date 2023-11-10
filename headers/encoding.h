@@ -1,8 +1,8 @@
-#ifndef ENCODING_H
-#define ENCODING_H
+// #ifndef ENCODING_H
+// #define ENCODING_H
 
-#include <stdint.h>
+// #include <stdint.h>
 
-void decodeComodoMessage(struct AppData *appData, const uint8_t *message);
+// void decodeComodoMessage(struct AppData *appData, const uint8_t *message);
 
-#endif
+// #endif

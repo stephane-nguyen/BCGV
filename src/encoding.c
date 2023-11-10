@@ -1,8 +1,8 @@
-#include <stdint.h>
+// #include <stdint.h>
 
-#include "../headers/encoding.h"
+// #include "../headers/encoding.h"
 
 
-void decodeComodoMessage(struct AppData *appData, const uint8_t *message) {
+// void decodeComodoMessage(struct AppData *appData, const uint8_t *message) {
    
-}
+// }

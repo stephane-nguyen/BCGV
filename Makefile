@@ -21,7 +21,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJ_FILES)
 	@mkdir -p $(TARGET_DIR)
-	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS) -ldrapi
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
