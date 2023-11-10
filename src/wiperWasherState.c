@@ -6,37 +6,39 @@
 
 typedef enum {
     INIT = -1,
-    TURNED_OFF,
-    TURNED_ON,
-    ERROR,
-    ACQUITTED
-} classic_light_state_t;
+    ALL_TURNED_OFF,
+    WIPER_ACTIVATED,
+    ALL_ACTIVATED,
+    TIMERS_TURNED_OFF
+} wiper_washer_state_t;
 
 typedef enum {
     NONE,
-    COMMAND_ZERO=0,
-    COMMAND_ONE=1,
-    ACQUITTED_RECEIVED,
-    ACQUITTED_NOT_RECEIVED_AFTER_ONE_SECOND, /* event error */
-} classic_light_event_t;
+    COMMAND_ZERO_WIPER,
+    COMMAND_ZERO_WASHER,
+    COMMAND_ONE_WIPER,
+    COMMAND_ONE_WASHER,
+    COMMAND_ZERO_WIPER_WASHER,
+    COMMAND_ONE_WIPER_WASHER,
+    TIME_INFERIOR_TO_2,
+    TIME_SUPERIOR_TO_2
+} wiper_washer_event_t;
 
 typedef struct {
-    classic_light_state_t state;
-    classic_light_event_t event;
+    wiper_washer_state_t state;
+    wiper_washer_event_t event;
     int (*callback)(void);
     int next_state;
-} classic_light_transition_table;
+} wiper_washer_transition_table;
 
-classic_light_transition_table trans[] = {
-    { INIT, NONE, NULL, TURNED_OFF},
-    { TURNED_OFF, COMMAND_ZERO, NULL, TURNED_OFF},
-    { TURNED_OFF, COMMAND_ONE, NULL, TURNED_ON},
-    { TURNED_ON, COMMAND_ZERO, NULL, TURNED_OFF},
-    { TURNED_ON, COMMAND_ONE, NULL, TURNED_ON},
-    { TURNED_ON, ACQUITTED_NOT_RECEIVED_AFTER_ONE_SECOND, NULL, ERROR},
-    { TURNED_ON, ACQUITTED_RECEIVED, NULL, ACQUITTED},
-    { ACQUITTED, COMMAND_ONE, NULL, ACQUITTED},
-    { ACQUITTED, COMMAND_ZERO, NULL, TURNED_OFF}
+wiper_washer_transition_table wiper_washer_trans[] = {
+    { INIT, NONE, NULL, ALL_TURNED_OFF},
+    { ALL_TURNED_OFF, COMMAND_ZERO_WIPER_WASHER, NULL, ALL_TURNED_OFF},
+    { ALL_TURNED_OFF, COMMAND_ONE_WIPER, NULL, WIPER_ACTIVATED},
+    { ALL_TURNED_OFF, COMMAND_ONE_WASHER, NULL, ALL_ACTIVATED},
+    { WIPER_ACTIVATED, COMMAND_ONE_WASHER, NULL, ALL_ACTIVATED},
+    { ALL_ACTIVATED, COMMAND_ONE_WASHER, NULL, ALL_ACTIVATED},
+    { ALL_ACTIVATED, COMMAND_ZERO_WIPER, NULL, TURNED_OFF}
 };
 
 #define TRANS_COUNT (sizeof(trans)/sizeof(*trans))

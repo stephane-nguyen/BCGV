@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
-void decodeComodoMessage(struct, const uint8_t *message);
+#include "utils.h"
+
+void decodeComodoMessage(struct comodo_message_t *comodoMessage, const uint8_t *message);
+void decodeMuxMessage(struct mux_message_t *muxMessage, const uint8_t *message);
+
 
 #endif
