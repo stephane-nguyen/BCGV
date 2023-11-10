@@ -103,7 +103,7 @@ for row in dataContent:
 
 with open(generatedFileH, 'w') as file:
     file.write(rawCodeH)
-    subprocess.run(f'cp {generatedFileH} {current_directory}/../headers', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+subprocess.run(f'cp {generatedFileH} {current_directory}/../headers', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 with open(generatedFileC, 'w') as file:
     file.write(rawCodeC)
     subprocess.run(f'gcc -c {generatedFileC} -o {generatedFileO}', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
