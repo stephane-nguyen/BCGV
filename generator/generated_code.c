@@ -1,80 +1,44 @@
 #include "generated_code.h"
 
 void init_carData() {
-	carData.cmdWarning = 0;
-	carData.cmdPositionLights = 0;
-	carData.cmdLowBeam = 0;
-	carData.cmdHighBeam = 0;
-	carData.cmdRightIndicator = 0;
-	carData.cmdLeftIndicator = 0;
-	carData.cmdWipers = 0;
-	carData.cmdWasher = 0;
-	carData.message.id = 0x01;
-	carData.message.lightState = TRUE;
 	carData.isAcquitted = 0;
 	carData.isActivated = 0;
 	carData.tramNumber = 0;
-	carData.kilometrage = 0;
+	carData.mileage = 0;
 	carData.speed = 0;
-	carData.chassisProblem = CHASSIS_NONE;
+	carData.chassisProblem = 0;
 	carData.motorProblem = MOTOR_NONE;
 	carData.fuelLevel = 0;
 	carData.turnsPerMinute = 0;
-	carData.batteryProblem = BATTERY_NONE;
-}
-void set_cmdWarning(enum_bool_t new_value) {
-	carData.cmdWarning = new_value;
-}
-enum_bool_t get_cmdWarning() {
-	return carData.cmdWarning;
-}
-void set_cmdPositionLights(enum_bool_t new_value) {
-	carData.cmdPositionLights = new_value;
-}
-enum_bool_t get_cmdPositionLights() {
-	return carData.cmdPositionLights;
-}
-void set_cmdLowBeam(enum_bool_t new_value) {
-	carData.cmdLowBeam = new_value;
-}
-enum_bool_t get_cmdLowBeam() {
-	return carData.cmdLowBeam;
-}
-void set_cmdHighBeam(enum_bool_t new_value) {
-	carData.cmdHighBeam = new_value;
-}
-enum_bool_t get_cmdHighBeam() {
-	return carData.cmdHighBeam;
-}
-void set_cmdRightIndicator(enum_bool_t new_value) {
-	carData.cmdRightIndicator = new_value;
-}
-enum_bool_t get_cmdRightIndicator() {
-	return carData.cmdRightIndicator;
-}
-void set_cmdLeftIndicator(enum_bool_t new_value) {
-	carData.cmdLeftIndicator = new_value;
-}
-enum_bool_t get_cmdLeftIndicator() {
-	return carData.cmdLeftIndicator;
-}
-void set_cmdWipers(enum_bool_t new_value) {
-	carData.cmdWipers = new_value;
-}
-enum_bool_t get_cmdWipers() {
-	return carData.cmdWipers;
-}
-void set_cmdWasher(enum_bool_t new_value) {
-	carData.cmdWasher = new_value;
-}
-enum_bool_t get_cmdWasher() {
-	return carData.cmdWasher;
-}
-void set_message(message_t new_value) {
-	carData.message = new_value;
-}
-message_t get_message() {
-	return carData.message;
+	carData.batteryProblem = 0;
+	carData.crc8 = 0;
+	carData.positionLightMessage.id = 0x01;
+	carData.positionLightMessage.lightState = TRUE;
+	carData.rightIndicatorMessage.id = 0x04;
+	carData.rightIndicatorMessage.lightState = FALSE;
+	carData.leftIndicatorMessage.id = 0x05;
+	carData.leftIndicatorMessage.lightState = FALSE;
+	carData.lowBeamMessage.id = 0x02;
+	carData.lowBeamMessage.lightState = FALSE;
+	carData.highBeamMessage.id = 0x03;
+	carData.highBeamMessage.lightState = FALSE;
+	carData.comodoData.cmdWarning = FALSE;
+	carData.comodoData.cmdPositionLights = FALSE;
+	carData.comodoData.cmdLowBeam = FALSE;
+	carData.comodoData.cmdHighBeam = FALSE;
+	carData.comodoData.cmdRightIndicator = FALSE;
+	carData.comodoData.cmdLeftIndicator = FALSE;
+	carData.comodoData.cmdWipers = FALSE;
+	carData.comodoData.cmdWasher = FALSE;
+	carData.muxData.tramNumber = 0;
+	carData.muxData.mileage = 0;
+	carData.muxData.speed = 0;
+	carData.muxData.chassisProblem = 0;
+	carData.muxData.motorProblem = 0;
+	carData.muxData.fuelLevel = 0;
+	carData.muxData.turnsPerMinute = 0;
+	carData.muxData.batteryProblem = 0;
+	carData.muxData.crc8 = 0;
 }
 void set_isAcquitted(state_t new_value) {
 	carData.isAcquitted = new_value;
@@ -94,11 +58,11 @@ void set_tramNumber(tram_number_t new_value) {
 tram_number_t get_tramNumber() {
 	return carData.tramNumber;
 }
-void set_kilometrage(uint8_t new_value) {
-	carData.kilometrage = new_value;
+void set_mileage(uint8_t new_value) {
+	carData.mileage = new_value;
 }
-uint8_t get_kilometrage() {
-	return carData.kilometrage;
+uint8_t get_mileage() {
+	return carData.mileage;
 }
 void set_speed(uint8_t new_value) {
 	carData.speed = new_value;
@@ -135,4 +99,52 @@ void set_batteryProblem(battery_problem_t new_value) {
 }
 battery_problem_t get_batteryProblem() {
 	return carData.batteryProblem;
+}
+void set_crc8(uint8_t new_value) {
+	carData.crc8 = new_value;
+}
+uint8_t get_crc8() {
+	return carData.crc8;
+}
+void set_positionLightMessage(message_t new_value) {
+	carData.positionLightMessage = new_value;
+}
+message_t get_positionLightMessage() {
+	return carData.positionLightMessage;
+}
+void set_rightIndicatorMessage(message_t new_value) {
+	carData.rightIndicatorMessage = new_value;
+}
+message_t get_rightIndicatorMessage() {
+	return carData.rightIndicatorMessage;
+}
+void set_leftIndicatorMessage(message_t new_value) {
+	carData.leftIndicatorMessage = new_value;
+}
+message_t get_leftIndicatorMessage() {
+	return carData.leftIndicatorMessage;
+}
+void set_lowBeamMessage(message_t new_value) {
+	carData.lowBeamMessage = new_value;
+}
+message_t get_lowBeamMessage() {
+	return carData.lowBeamMessage;
+}
+void set_highBeamMessage(message_t new_value) {
+	carData.highBeamMessage = new_value;
+}
+message_t get_highBeamMessage() {
+	return carData.highBeamMessage;
+}
+void set_comodoData(comodo_message_t new_value) {
+	carData.comodoData = new_value;
+}
+comodo_message_t get_comodoData() {
+	return carData.comodoData;
+}
+void set_muxData(mux_message_t new_value) {
+	carData.muxData = new_value;
+}
+mux_message_t get_muxData() {
+	return carData.muxData;
 }

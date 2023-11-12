@@ -61,7 +61,7 @@ def extract_names_from_declaration(str):
     return re.findall(pattern, str)
 
 def extract_values_from_declaration(str):
-    pattern = r'(\w+);'
+    pattern = r'(\w+)[,\}]'
     return re.findall(pattern, str)
 
 rawCodeH += f"void init_{carVariableName}();\n"
@@ -71,14 +71,21 @@ for row in dataContent:
     variableType = row['Type']
     initValue = row['InitValue']
 
+    print("variableName", variableName)
+
     # if initValue start and ends with {}
     if initValue.startswith('{') and initValue.endswith('}'):
         obj = get_struct_by_typename(variableType)
 
+        # print("obj", obj, initValue)
         attributeNames = extract_names_from_declaration(obj)
         initValuesExtracted = extract_values_from_declaration(initValue)
 
+
         # Assert that the number of variableNames and initValues are equal
+        print("obj", obj)
+        print("attributeNames", attributeNames, initValuesExtracted)
+        print("len", len(attributeNames), len(initValuesExtracted))
         assert len(attributeNames) == len(initValuesExtracted), "Error: number of variableNames and initValues are not equal"
     
         for i in range(len(attributeNames)):
