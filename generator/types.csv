@@ -1,8 +1,14 @@
 Name,Genre,Declaration,Possible Values,Comment
-state_t,enum,"{TURNED_OFF, TURNED_ON}",0x0-0x1,
+state_t,enum,"{INIT, TURNED_OFF, TURNED_ON, ACQUITTED, ERROR, ACTIVATED_AND_TURNED_ON, ACTIVATED_AND_TURNED_OFF, ALL_TURNED_OFF, WINDSHIELD_WIPER_AND_WINDSHIELD_WASHER_ACTIVATED, WINDSHIELD_WIPER_ACTIVATED, WINDSHIELD_WIPER_AND_WINDSHIELD_WASHER_ACTIVATED_TURNED_OFF}",0x0-0x10,
 enum_bool_t,enum,"{FALSE, TRUE}",0-1,Boolean values
 chassis_problem_t,enum,"{CHASSIS_NONE, WHEEL_PRESSURE, DEFAILLANCE_BRAKE}",0x0-0x2,
-motor_problem_t,enum,"{MOTOR_NONE, DEFAULT_PRESSURE, LDR_TEMPERATURE, OIL_OVERHEAT}",0x1-0x4,
+motor_problem_t,enum,"{MOTOR_NONE, DEFAULT_PRESSURE, LDR_TEMPERATURE, OIL_OVERHEAT}",0x0-0x4,
 battery_problem_t,enum,"{BATTERY_NONE, EMPTY_BATTERY, BREAKDOWN}",0x0-0x2,Message values
-message_t,struct,{ uint8_t id; state_t lightState;},{ 1-5 ; FALSE-TRUE},Message values
-tram_number_t,typedef,uint8_t,0-100,
+message_t,struct,{ uint8_t id; state_t lightState;},{ 1-5 ; FALSE-TRUE;},Message values
+tram_number_t,typedef,uint8_t,"0-100",
+mux_message_t,struct,"{uint8_t tramNumber; uint8_t mileage; uint8_t speed; chassis_problem_t chassisProblem; motor_problem_t motorProblem; uint8_t fuelLevel; uint8_t turnsPerMinute; battery_problem_t batteryProblem; uint8_t crc8; }","{ 0-100; 0-1000000; 0-255; 0x0-0x2; 0x0-0x4; 0-40; 0-10000; 0x0-0x2; 0-8 }",
+comodo_message_t,struct,"{ enum_bool_t cmdWarning; enum_bool_t cmdPositionLights; enum_bool_t cmdLowBeam; enum_bool_t cmdHighBeam; enum_bool_t cmdRightIndicator; enum_bool_t cmdLeftIndicator; enum_bool_t cmdWipers; enum_bool_t cmdWasher; }","{ FALSE-TRUE ; FALSE-TRUE ; FALSE-TRUE ; FALSE-TRUE ; FALSE-TRUE ; FALSE-TRUE ; FALSE-TRUE ; FALSE-TRUE }",
+warning_lights_event_t,enum,"{ NONE, COMMAND_ZERO, COMMAND_ONE, ACQUITTED_RECEIVED, ACQUITTED_NOT_RECEIVED }",0x0-0x4,
+warning_lights_transition_t,enum,"{ WL_NONE, TO_TURNED_ON, TO_TURNED_OFF, TO_ERROR, TO_ACQUITTED, TO_ACTIVATED_AND_TURNED_OFF, TO_ACTIVATED_AND_TURNED_ON }",0x0-0x6,
+eg_lg_state_t,enum,"{ EG_LG_ALL_OFF, EG_ACTIVE, EG_LG_ACTIVE, EG_TIMER_LG_OFF }",0x0-0x2,
+eg_lg_event_t;,enum,"{ EG_LG_NONE, EG_LG_CMD_EG_0, EG_LG_CMD_EG_1, EG_LG_CMD_LG_0, EG_LG_CMD_LG_1, EG_LG_TIMER_EXPIRED }",0x0-0x5,
