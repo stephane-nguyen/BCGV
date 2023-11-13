@@ -49,7 +49,7 @@ for row in dataContent:
     rawCodeH += f"\t{variableType} {variableName};\n"
 rawCodeH += "}" + f" {carTypeName};\n\n"
 
-rawCodeH += f"\n{carTypeName} {carVariableName};\n\n"
+rawCodeC += f"\n{carTypeName} {carVariableName};\n\n"
 
 def get_struct_by_typename(typename):
     for row in typesContent:
@@ -71,8 +71,6 @@ for row in dataContent:
     variableType = row['Type']
     initValue = row['InitValue']
 
-    print("variableName", variableName)
-
     # if initValue start and ends with {}
     if initValue.startswith('{') and initValue.endswith('}'):
         obj = get_struct_by_typename(variableType)
@@ -81,11 +79,7 @@ for row in dataContent:
         attributeNames = extract_names_from_declaration(obj)
         initValuesExtracted = extract_values_from_declaration(initValue)
 
-
         # Assert that the number of variableNames and initValues are equal
-        print("obj", obj)
-        print("attributeNames", attributeNames, initValuesExtracted)
-        print("len", len(attributeNames), len(initValuesExtracted))
         assert len(attributeNames) == len(initValuesExtracted), "Error: number of variableNames and initValues are not equal"
     
         for i in range(len(attributeNames)):

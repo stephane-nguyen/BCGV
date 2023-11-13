@@ -3,12 +3,9 @@
  * @brief Header file containing function declarations for decoding messages.
  */
 
-#ifndef DECODING_H
-#define DECODING_H
+#pragma once
 
 #include <stdint.h>
-
-#include "generated_code.h"
 
 /**
  * @brief Decode a 1-bit message into a comodo_message_t structure.
@@ -29,5 +26,3 @@ void decodecomodo(const uint8_t *message);
  * @param message Pointer to the input message.
  */
 void decodemux(const uint8_t *message);
-
-#endif

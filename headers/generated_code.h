@@ -38,9 +38,6 @@ typedef struct {
 	mux_message_t muxData;
 } car_data_t;
 
-
-car_data_t carData;
-
 void init_carData();
 void set_isAcquitted(state_t new_value);
 state_t get_isAcquitted();

@@ -1,7 +1,9 @@
+#include "decoding.h"
+
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
-#include "encoding.h"
 #include "drv_api.h"
 #include "generated_code.h"
 
@@ -22,6 +24,8 @@ void decodecomodo(const uint8_t *message) {
     serialData[0].frameSize = sizeof(comodo_message_t);
     memcpy(serialData[0].frame, &comodo, sizeof(comodo_message_t));
 
+    // set_comodoData(comodo);
+
     int32_t drvFd = drv_open(); 
     int32_t result = drv_write_ser(drvFd, serialData, 1); 
     drv_close(drvFd); 
@@ -41,7 +45,7 @@ void decodemux(const uint8_t *message) {
 
     if (drvFd == DRV_ERROR){
         perror("Error while trying to open the driver.");
-        return 1;
+        return;
     }
 
     while (drv_read_udp_100ms(drvFd, udpFrame) != DRV_ERROR) {
@@ -55,6 +59,7 @@ void decodemux(const uint8_t *message) {
         mux.turnsPerMinute = (uint32_t)((message[10] << 24) | (message[11] << 16) | (message[12] << 8) | message[13]);        
         mux.crc8 = message[14];
 
-        set_mux_message(mux);
+        (void)mux;
+        // set_muxData(mux);
     }
 }

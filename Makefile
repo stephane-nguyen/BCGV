@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Iheaders
 LDFLAGS = -Llibs
-LIBS = -l:drv_api.a -l:generated_code.a
+LIBS = -l:drv_api.a -lgenerated
 
 SRC_DIR = src
 OBJ_DIR = target/obj
@@ -19,7 +19,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJ_FILES)
 	@mkdir -p $(TARGET_DIR)
-	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $^ -o $@ $(LDFLAGS) $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)

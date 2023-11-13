@@ -1,5 +1,8 @@
 #include "generated_code.h"
 
+
+car_data_t carData;
+
 void init_carData() {
 	carData.isAcquitted = 0;
 	carData.isActivated = 0;
